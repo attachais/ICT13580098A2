@@ -2,10 +2,73 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ICT13580098A2"
-             x:Class="ICT13580098A2.MainPage">
+             x:Class="ICT13580098A2.MainPage"
+             Title="1st Page">
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="New"
+            x:Name="newButton"/>
+    </ContentPage.ToolbarItems>
+
+    <ListView
+        x:Name="productListView"
+        RowHeight="100">
+        
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem
+                            Text="Edit"
+                            CommandParameter="{Binding .}"
+                            Clicked="Edit_Clicked"/>
+                        <MenuItem
+                            Text="Delete"
+                            CommandParameter="{Binding .}"
+                            IsDestructive="True"
+                            Clicked="Delete_Clicked"/>
+                    </ViewCell.ContextActions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Image
+                            Source="http://reg1.tsu.ac.th/registrar/tsu_ruffle/img/no_image_icon.gif"
+                            HeightRequest="100"/>
+                        <StackLayout
+                            Grid.Column="1"
+                            Orientation="Vertical"
+                            VerticalOptions="Center">
+
+                            <Label
+                                Text="{Binding Name}"
+                                FontAttributes="Bold"/>
+
+                            <Label
+                                Text="{Binding Description}"
+                                LineBreakMode="TailTruncation"/>
+
+                            <Label
+                                Text="{Binding Sellprice, StringFormat='ราคาขาย {0:N0}บาท'}"/>
+
+                            
+                        </StackLayout>
+                        <Button
+                            Text="+"
+                            Grid.Column="2"
+                            BackgroundColor="Red"
+                            Margin="3"
+                            VerticalOptions="Center"
+                            HeightRequest="50"
+                            FontSize="20"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
 
 </ContentPage>

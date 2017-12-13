@@ -23,7 +23,9 @@ namespace ICT13580098A2.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            var dbpart = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            dbpart = System.IO.Path.Combine(dbpart, "myshop.db3");
+            LoadApplication(new App(dbpart));
 
             return base.FinishedLaunching(app, options);
         }
